@@ -173,7 +173,8 @@ can view and edit.
 
 \section{Setting up Directories}
 Directories are another word for folders. You should create one folder for
-this class. Inside the folder for this class, you should create another
+this class. You need to create this folder on your computer, not on your
+Github account. Inside the folder for this class, you should create another
 folder for this project. As the project is named capstone-reproducibility,
 you might want to name the folder for the project with this name. If you
 don't know how to create a folder for your computer, do a Google search.
