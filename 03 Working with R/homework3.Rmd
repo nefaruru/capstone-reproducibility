@@ -40,5 +40,5 @@ Find the mean level of support for freshmen only.
 
 
 <!--
-Find the mean level of support for male business students only.
+Find the mean level of support for sophomore business students only.
 -->
