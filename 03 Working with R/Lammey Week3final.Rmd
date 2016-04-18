@@ -1,0 +1,27 @@
+---
+title: "Lammey week 3"
+output: html_document
+---
+Set working directory:Done
+
+Read homework data:
+```{r dat<-read.csv("data.csv")
+
+Check the structure of the data:
+
+```{r}
+str(dat)
+
+Find the mean, median, and standard deviation:
+mean(dat$conservatism)
+median(dat$conservatism)
+var(dat$conservatism)
+
+
+Mean level of freshmen support:
+
+mean(dat$support[dat$gender=="freshmen"])
+
+Mean level of support for male business students.
+
+mean(dat$support[dat$gender=="male"])
