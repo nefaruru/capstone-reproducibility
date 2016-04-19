@@ -11,7 +11,7 @@ should preface your R commands with some plain English explanation.
 -->
 
 The first step is to read in the data.
-```{r
+```{r}
 dat<-read.csv("example3.csv")
 ```
 <!--

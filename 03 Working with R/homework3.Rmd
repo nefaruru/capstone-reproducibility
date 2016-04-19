@@ -34,11 +34,11 @@ for the overall level of conservatism.
 
 
 <!--
-Find the mean level of support for freshmen only.
+Find the mean level of conservatism for freshmen only.
 -->
 
 
 
 <!--
-Find the mean level of support for sophomore business students only.
+Find the mean level of conservatism for sophomore business students only.
 -->

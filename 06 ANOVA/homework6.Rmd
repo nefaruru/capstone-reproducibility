@@ -35,7 +35,7 @@ analysis.
 
 
 <!--
-Perform a one-way within subjects ANOVA on the same data you analyzed
+Perform a one-way within-subjects ANOVA on the same data you analyzed
 earlier. Tip: use subject as the subjects variable for this analysis.
 -->
 
