@@ -10,34 +10,36 @@ with the appropriate variables for the homework.
 
 <!--
 Set the working directory.
-No Rchunk is needed to accomplish this.
+
 -->
 
 <!--
-Read in the homework4.csv data. For each of the following steps you
-should preface your R commands with some plain English explanation.
+Read in the homework4.csv data. 
+ dat<-read.csv(example4.csv)
+ 
 -->
 
 
 
 <!--
 Check the structure of the data.
+str(dat)
 -->
 
 
 
 <!--
 Create a table that shows how many people fell into each category.
+mytable<-table(dat$gender,dat$major)
+
+mytable
 -->
 
 
 
 <!--
-Perform a chi-square test to determine whether or not the experimental
-conditions and agreement with a statement are independent or related.
-Also, interpret the results of your test and provide a a statistical
-statement that supports your interpretation. As there's no way to
-insert the chi-square symbol, you can just use chi-square instead
-(see example4.Rmd).
+Perform a chi-square test 
+chisq.test(dat$gender, dat$major)
+
 -->
 
