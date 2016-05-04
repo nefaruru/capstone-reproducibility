@@ -1,57 +1,126 @@
-## Homework 5
-
-<!--
-Set the working directory.
-No Rchunk is needed to accomplish this.
--->
+---
+title: "vlammey"
+output: html_document
+---
 
 
 
-<!--
-Read in the homework5.csv data. For each of the following steps you
-should preface your R commands with some plain English explanation.
-The data are fabricated and include the number of words per minute
-that people can type when listening to no music and when listening
-to heavy metal.
--->
+Read in the homework5.csv data and set working directory.
 
 
-
-<!--
-Check the structure of the data.
--->
-
+```{r}
+dat<-read.csv("data5.csv")
+```
 
 
-<!--
-Find the mean words per minute for the two groups.
--->
+Check the structure of the data
 
+```{r}
+str(dat)
 
+```
 
-<!--
+Find the mean words per minute for the two groups
+```{r}
+mean(dat$support[dat$wpm=="none"])
+mean(dat$support[dat$wpm=="metal"])
+
+```
+
 Run an independent t-test to determine if the mean wpm for the
 no music group is different from the mean wpm from heavy metal
-group. Interpret the results of your analysis after you run it.
--->
+group.
 
+```{r}
+t.test(df$rt[df$group=="none"],
+       df$rt[df$group=="metal"],
+       var.equal=TRUE)
+```
 
-
-<!--
 Run another independent t-test with the alternative hypothesis that
-the heavy metal group types faster than the no music group. Interpret
-the results of your analyses.
--->
+the heavy metal group types faster than the no music group. 
+
+```{r}
+t.test(dat$rt[dat$group=="none"],
+       dat$rt[dat$group=="metal"],
+       var.equal=TRUE,
+       alternative="greater")
+
+```
+
+Load libraries
+
+
+```{r}
+library(ggplot2)
+library(gplots)
+library(dplyr)
+install.packages("ggplot2")
+install.packages("gplots")
+install.packages("dplyr")
+
+```
+
+
+```{r}
+library(ggplot2)
+library(gplots)
+library(dplyr)
+
+temp<-dat%>%group_by(group)%>%
+  summarize(means=mean(rt), sems=sd(rt)/sqrt(length(rt)))
+
+
+```
+
+```
 
 
 
-<!--
 Create a bar graph of the data.
--->
 
+```{r}
+f<-ggplot(temp,aes(x=factor(group),y=means))+
+  geom_bar(stat="identity", color="black",
+           fill=c("deepskyblue2", "deeppink"))+
+  geom_errorbar(aes(ymax=means+sems,
+                    ymin=means-sems),
+                width=.2)+
+  ggtitle("Graph")+
+  labs(x="Group", y="Response Time (ms)")+
+  scale_x_discrete(breaks=c("control","experimental"),
+                   labels=c("Control","Experimental"))+
+  theme(plot.title=element_text(size=15,
+                                face="bold",
+                                vjust=.5))+
+  theme(axis.title.x=element_text(size=12,
+                                  face="bold",
+                                  vjust=-.25))+
+  theme(axis.title.y=element_text(size=12,
+                                  face="bold",
+                                  vjust=.25))+
+  theme(axis.text.x=element_text(size=10,
+                                 face="bold",
+                                 color="black"))+
+  theme(axis.text.y=element_text(size=10,
+                                 face="bold",
+                                 color="black"))+
+  coord_cartesian(ylim=c(min(temp$means)-2*max(temp$sems),
+                         max(temp$means)+2*max(temp$sems)))+
+  theme(panel.border=element_blank(),
+        axis.line=element_line())+
+  theme(panel.grid.major.x=element_blank())+
+  theme(panel.grid.major.y=element_line(color="darkgrey"))+
+  theme(panel.grid.minor.y=element_blank())
+f
+```
 
-
-<!--
 Conduct and interpret a two-tailed paired t-test on the data.
--->
+
+```{r}
+t.test(dat$rt[dat$group=="none"],
+       dat$rt[dat$group=="metal"],
+       var.equal=TRUE,
+       paired=TRUE)
+```
 
