@@ -9,7 +9,7 @@ Read in the homework5.csv data and set working directory.
 
 
 ```{r}
-dat<-read.csv("data5.csv")
+dat<-read.csv("homework5.csv")
 ```
 
 
@@ -52,9 +52,7 @@ Load libraries
 
 
 ```{r}
-library(ggplot2)
-library(gplots)
-library(dplyr)
+
 install.packages("ggplot2")
 install.packages("gplots")
 install.packages("dplyr")
