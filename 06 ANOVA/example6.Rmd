@@ -12,7 +12,7 @@ should preface your R commands with some plain English explanation.
 
 The first step is to read in the data.
 ```{r}
-dat<-read.csv("example6.csv")
+dat<-read.csv("homework6.csv")
 ```
 <!--
 Check the structure of the data and change any variables that should
@@ -29,7 +29,7 @@ From the structure we can see that position, subject, and subject2
 should all be factor variables. So let's fix that.
 
 ```{r}
-dat$position<-as.factor(dat$position)
+dat$type<-as.factor(dat$type)
 dat$subject<-as.factor(dat$subject)
 dat$subject2<-as.factor(dat$subject2)
 ```
@@ -51,7 +51,7 @@ temp<-dat[dat$distractor=="yes",]
 Now we can run our ANOVA.
 
 ```{r}
-summary(aov(percent~position, data=temp))
+summary(aov(rt~type, data=temp))
 ```
 
 There's a significant effect of which position a word appears in on
@@ -64,11 +64,11 @@ library(ggplot2)
 library(gplots)
 library(dplyr)
 
-temp<-temp%>%group_by(position)%>%
-  summarize(means=mean(percent),
+temp<-temp%>%group_by(type)%>%
+  summarize(means=mean(rt),
             sems=sd(percent)/sqrt(length(percent)))
 
-f<-ggplot(temp, aes(x=as.factor(position),
+f<-ggplot(temp, aes(x=as.factor(type),
                     y=means,
                     group=1))+
   geom_line(size=1)+
@@ -111,7 +111,7 @@ temp<-dat[dat$distractor=="yes",]
 Now I'll perform the within-subjects analysis.
 
 ```{r}
-summary(aov(percent~position+
+summary(aov(rt~type+
               Error(subject/position),data=temp))
 ```
 
@@ -130,7 +130,7 @@ of and interactions between list position and whether or not
 participants completed an intervening task.
 
 ```{r}
-summary(aov(percent~position*distractor, data=dat))
+summary(aov(rt~type*distractor, data=dat))
 ```
 
 The analyses show that there was an effect of position, F(9,220) =
@@ -149,9 +149,9 @@ grouped bar graphs for the data I analyzed. But first I need to
 summarize the data.
 
 ```{r}
-temp<-dat%>%group_by(position,distractor)%>%
-  summarize(means=mean(percent),
-            sems=sd(percent)/sqrt(length(n)))
+temp<-dat%>%group_by(type,distractor)%>%
+  summarize(means=mean(rt),
+            sems=sd(rt)/sqrt(length(n)))
 ```
 
 Now I can create the figures.
